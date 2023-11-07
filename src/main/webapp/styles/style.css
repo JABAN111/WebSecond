@@ -3,7 +3,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 #header{
     width: 100%;
     height: 30%;
@@ -13,17 +12,119 @@ body{
 /* */
 .header-info{
     width: 432px;
-    font-weight: 27;
+    font-size: 27px;
     /*padding-left: ;*/
     /*padding-right: ;*/
     font-family: "Sitka Heading", serif;
 }
+
+
 /* Главное пространство, в котором находится график и выбор координат */
 #main-entrance{
-    background: #b5e8e7;
+    background: #F6F8FE;
 }
+#table-maine-entrance{
+    width: 100%;
+}
+/* вложенная таблица с выбором координат*/
+#text-holder{
+    /*width: 100%;*/
+    margin-left: 197px;
+    /*отступ от внешний таблицы*/
+    margin-top: -84px;
+    padding-top: 93px;
+/*    padding-right: 197px;*/
+}
+#x-header{
+    font-weight: bold;
+    font-size: 56px;
+    font-family: "Segoe UI", serif;
+}
+.x-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -5px;
+}
+.x {
+    width: 44px;
+    height: 44px;
+}
+
+
+.x-buttons input {
+    margin: 5px;
+}
+
+#y-header{
+    font-weight: bold;
+    font-size: 56px;
+    font-family: "Segoe UI", serif;
+}
+#yValue{
+    width: 617px;
+    height: 57px;
+    border-radius: 50px;
+    font-size: 22px;
+    font-family: "Segoe UI",serif;
+    text-align: center;
+
+}
+
+#yValue::placeholder{
+    text-align: center;
+    font-size: 22px;
+    font-family: "Segoe UI",serif;
+}
+#R-header{
+    font-weight: bold;
+    font-size: 56px;
+    font-family: "Segoe UI", serif;
+}
+.R{
+    width: 486px;
+    height: 62px;
+    background: #0B04D5;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    border-radius: 50px;
+}
+.R option {
+    background: #0B04D5;
+    color: white;
+    font-size: 26px;
+    border-radius: 50px;
+}
+
+#area-image-holder{
+    float: right;
+}
+/*<td> - отвечающий за картинку*/
+#areaImage{
+    padding-top: 70px;
+    /*у текста отступ 93px*/
+    padding-right: 184px;
+}
+
 
 .header-images{
     width: 71px;
     height: 71px;
 }
+#submit-button{
+    font-weight: bold;
+    font-size: 56px;
+    font-family: "Segoe UI", serif;
+    background-color: #0B04D5;
+    color: white;
+    display: block;
+    margin: 0 auto;
+}
+#submit-button:disabled {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    border-radius: 50px;
+}
+

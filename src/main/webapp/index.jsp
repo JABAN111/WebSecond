@@ -32,28 +32,53 @@
     </table>
 <br>
 <div id = "main-entrance">
-<table>
+<table id = "table-maine-entrance">
     <td>
- <!-- Выбор координат-->
-        <table>
-
+ <!-- Выбор координат x?-->
+<%--        style="padding-right: 197px;"--%>
+        <table  id = "text-holder">
+            <form action="/ControllerServlet" method="POST">
+                <tr>
+                    <td>
+                        <div id="x-header">Выберите x:</div>
+                        <br>
+                        <div class="x-buttons" id="first-row">
+                            <% for (int i = -5; i < 0; i++) { %>
+                            <input autocomplete="off" class="x" type="radio" name="x" value="<%= i %>"> <%= i %>
+                            <% } %>
+                        </div>
+                        <div class="x-buttons" id="second-row">
+                            <% for(int i=0; i < 4;i++){ %>
+                            <input autocomplete="off" class="x" type="radio" name="x" value="<%=i%>"> <%=i%>
+                            <% } %>
+                        </div>
+                        <br>
+                        <label for="yValue" id="y-header">Выберите y:</label><br>
+                        <input autocomplete='off' maxlength="5" id="yValue" type="text" name="y" placeholder="(от -3 до 5)" title="Введите число от -3 до 5"><br>
+                        <label for = "Rinput" id="R-header">Выберите R:</label><br>
+                        <label id = "Rinput">
+                            <select class="R" name="R" autocomplete='off'>
+                                <option class = "R" value="">Выбрать</option>
+                                    <% for(int i=1;i<6;i++){%>
+                                <option class= "R" value="<%=i%>"><%=i%></option>
+                                <%}%>
+                            </select>
+                        </label><br>
+                    </td>
+                </tr>
+            </form>
+<%--            <tr>some data...--%>
+<%--            <td>another data...</td>--%>
+<%--            </tr>--%>
+            </form>
         </table>
     </td>
-
-</table>
-
-
-<%--<h1>PLS WORK </h1>--%>
-<%--<form action="areaCheckServlet" method="POST">--%>
-<%--    <label for="x">x:</label>--%>
-<%--    <input type="text" id="x" name="x" required><br>--%>
-<%--    <label for="y">y:</label>--%>
-<%--    <input type="text" id="y" name="y" required><br>--%>
-<%--    <label for="R">R:</label>--%>
-<%--    <input type="text" id="R" name="R" required><br>--%>
-<%--    <input type="submit" value="Send">--%>
-<%--</form>--%>
-
+    <td id = "area-image-holder">
+        <img id = "areaImage" src="pictures/areaSecondLab.png">
+    </td>
+</table><br>
+    <button id="submit-button" type="button" disabled="" name="button" value="отправить">отправить</button>
 </div>
+
 </body>
 </html>
