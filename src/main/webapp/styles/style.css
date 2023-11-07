@@ -1,0 +1,29 @@
+/* Верхний отступ страницы*/
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#header{
+    width: 100%;
+    height: 30%;
+    /*text-align: center;*/
+    /*background: aquamarine;*/
+}
+/* */
+.header-info{
+    width: 432px;
+    font-weight: 27;
+    /*padding-left: ;*/
+    /*padding-right: ;*/
+    font-family: "Sitka Heading", serif;
+}
+/* Главное пространство, в котором находится график и выбор координат */
+#main-entrance{
+    background: #b5e8e7;
+}
+
+.header-images{
+    width: 71px;
+    height: 71px;
+}
