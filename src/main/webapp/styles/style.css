@@ -97,16 +97,19 @@ body{
     border-radius: 50px;
 }
 
+/*<td> - отвечающий за картинку*/
 #area-image-holder{
     float: right;
 }
-/*<td> - отвечающий за картинку*/
-#areaImage{
+/*Было до использования canvas рисунка*/
+/*#areaImage{*/
+/*    padding-top: 70px;*/
+/*    padding-right: 184px;*/
+/*}*/
+#myCanvas{
     padding-top: 70px;
-    /*у текста отступ 93px*/
     padding-right: 184px;
 }
-
 
 .header-images{
     width: 71px;
@@ -131,4 +134,18 @@ body{
     cursor: not-allowed;
     border-radius: 50px;
 }
-
+#stat{
+    width: 100%;
+    background: #0B04D5;
+    color: white;
+    font-weight: bold;
+    font-size: 56px;
+    text-align: center;
+    font-family: "Segoe UI", serif;
+}
+#result{
+    border: 1px;
+    font-size: 56px;
+    width: 100%;
+    padding: 20px;
+}
