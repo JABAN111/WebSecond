@@ -14,7 +14,7 @@
     <meta name="description" content="Web-programming first lab">
     <meta name="author" content="Niagin Mikhail Alexeyevich">
 
-    <link rel="icon" type="pictures/icon" href="picterus/icon.png">
+    <link rel="icon" type="pictures/icon" href="pictures/icon.png">
 </head>
 <body>
 <%--<header>--%>
@@ -34,7 +34,7 @@
     <table id = "table-maine-entrance">
         <td>
             <table  id = "text-holder">
-                <form id = "coordinatesForm" action="ControllerServlet" method="POST">
+                <form id = "coordinatesForm" action="/areaCheckServlet" method="POST">
                     <tr>
                         <td>
                             <div id="x-header">Выберите x:</div>
@@ -55,32 +55,53 @@
                             <input autocomplete='off' maxlength="5" id="yValue" type="text" name="y" placeholder="(от -3 до 5)" title="Введите число от -3 до 5"><br>
 
                             <label for = "Rinput" id="R-header">Выберите R:</label><br>
-                            <label id = "Rinput">
+                            <div id = "Rinput">
                                 <select class="R" name="R" autocomplete='off'>
                                     <option class = "R" value="">Выбрать</option>
                                     <% for(int i=1;i<6;i++){%>
                                     <option class= "R" value="<%=i%>"><%=i%></option>
                                     <%}%>
                                 </select>
-                            </label><br>
+                            </div><br>
                         </td>
                     </tr>
+                </form>
             </table>
         </td>
         <td id = "area-image-holder">
-            <img id = "areaImage" src="pictures/areaSecondLab.png">
+
+            <canvas id="myCanvas" width="350" height="350"></canvas>
+<%--            <img id = "areaImage" src="pictures/areaSecondLab.png">--%>
         </td>
     </table><br>
     <input id="submit-button" type="button" disabled="" name="button" value="отправить">
-    </form>
-    <table class="result">
-        <div id="test">
+    <p id = "stat">Статистика</p>
+    <table id="result">
+        <tr><td>Координата x</td>
+            <td>Координата y</td>
+            <td>Координата R</td>
+            <td>Статус попадания</td>
+            <td>Дата</td>
+        </tr>
 
-        </div>
     </table>
 
 </div>
-<br>
+<%--<br>--%>
+<%--<h1>PLS WORK </h1>--%>
+<%--<form action="ControllerServlet" method="POST">--%>
+<%--    <label for="x">x:</label>--%>
+<%--    <input type="text" id="x" name="x" required><br>--%>
+<%--    <label for="y">y:</label>--%>
+<%--    <input type="text" id="y" name="y" required><br>--%>
+<%--    <label for="R">R:</label>--%>
+<%--    <input type="text" id="R" name="R" required><br>--%>
+<%--    <input type="submit" value="Send">--%>
+<%--</form>--%>
+<%--<script src="js/image.js"></script>--%>
+
+<script src="js/image.js">
+</script>
 
 <script src="js/script.js"></script>
 </body>
