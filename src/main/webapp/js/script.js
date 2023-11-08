@@ -81,8 +81,11 @@ document.addEventListener("DOMContentLoaded",function () {
                 url: "areaCheckServlet",
                 data: formData,
                 success: function (result) {
-                    console.log(result)
+                    printDotOnGraph(-2, 2, 4, true);
                     $("#result").append(result);
+                    for (let i = 0; i < result.length; i++) {
+                        console.log(result[i])  ;
+                    }
                     // table = ""
                     // for (let i = 0; i < result.length; i++) {
                     //     table += result[i];
