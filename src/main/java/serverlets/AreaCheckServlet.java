@@ -2,6 +2,7 @@ package serverlets;
 
 import model.areaProcessing;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +27,16 @@ public class AreaCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        ServletContext context = getServletContext();
+//        String outpTableData = "";
+        String[] data;
+        if((data = (String[]) context.getAttribute("outputString")) != null){
+            for(int i = 0; i < data.length; i++) {
+                out.println(data[i]);
+            }
+        }
 
         String timeZone = request.getParameter("localTime");
         TimeZone userTimeZone = TimeZone.getTimeZone(timeZone);
@@ -35,19 +46,16 @@ public class AreaCheckServlet extends HttpServlet {
         Date currentTime = new Date();
         String formattedTime = dateFormat.format(currentTime);
 
-        PrintWriter out = response.getWriter();
-
-            out.println("<tr>");
-            out.println("<td>" + request.getParameter("x") + "</td>");
-            out.println("<td>" + request.getParameter("y") + "</td>");
-            out.println("<td>" + request.getParameter("R") + "</td>");
-            out.println("<td>" + areaProcessing.areaCheck(
-                    Float.parseFloat(request.getParameter("x")),
-                    Double.parseDouble(request.getParameter("y").replace(",", ".")),
-                    Integer.parseInt(request.getParameter("R"))
-            ) + "</td>");
-
-            out.println("<td>" + formattedTime + "</td></tr>");
+        String outputString = "<tr>\n" +
+                "<td>" + request.getParameter("x") + "</td>\n" +
+                "<td>" + request.getParameter("y") + "</td>\n" +
+                "<td>" + request.getParameter("R") + "</td>\n" +
+                "<td>" + areaProcessing.areaCheck(
+                Float.parseFloat(request.getParameter("x")),
+                Double.parseDouble(request.getParameter("y").replace(",", ".")),
+                Integer.parseInt(request.getParameter("R"))) + "</td>\n" +
+                "<td>" + formattedTime + "</td>\n" + "</tr>";
+            out.println(outputString);
             out.close();
     }
 }
