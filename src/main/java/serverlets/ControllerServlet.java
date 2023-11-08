@@ -26,8 +26,8 @@ public class ControllerServlet extends HttpServlet {
                 sendError(response,"data is invalid");
             }
             int x = Integer.parseInt(request.getParameter("x"));
-            double y = Double.parseDouble(request.getParameter("y"));
-            Integer R = Integer.parseInt(request.getParameter("R"));
+            double y = Double.parseDouble(request.getParameter("y").replace(",", "."));
+            int R = Integer.parseInt(request.getParameter("R"));
             if(!(-5<x) || !(x<3)){
                 sendError(response,"x is out of range");
             }
@@ -37,20 +37,7 @@ public class ControllerServlet extends HttpServlet {
             if(!(1<R && R<5)){
                 sendError(response,"R is out of range");
             }
-//            response.sendError(222,"FINALLY");
-//            response.sendRedirect("areaCheckServlet");
             request.getRequestDispatcher("areaCheckServlet").forward(request,response);
-//            PrintWriter out = response.getWriter();
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Hi</title>");
-//            out.println("<body>");
-//            out.println("x coordinate: " + request.getParameter("x") + "<br>");
-//            out.println("y coordinate: " + request.getParameter("y") + "<br>");
-//            out.println("R coordinate: " + request.getParameter("R") + "<br>");
-//            out.println("</body>");
-//            out.println("</html>");
-//            out.close();
         }catch (Exception e){
             sendError(response,"invalid data");
         }

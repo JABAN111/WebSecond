@@ -43,30 +43,12 @@ public class AreaCheckServlet extends HttpServlet {
             out.println("<td>" + request.getParameter("R") + "</td>");
             out.println("<td>" + areaProcessing.areaCheck(
                     Float.parseFloat(request.getParameter("x")),
-                    Double.parseDouble(request.getParameter("y")),
+                    Double.parseDouble(request.getParameter("y").replace(",", ".")),
                     Integer.parseInt(request.getParameter("R"))
             ) + "</td>");
 
             out.println("<td>" + formattedTime + "</td></tr>");
             out.close();
-//        processRequest(request, response);
     }
-
-
-    public void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        try{
-            Float x = Float.parseFloat(request.getParameter("x"));
-            Double y = Double.parseDouble(request.getParameter("y"));
-            Integer R = Integer.parseInt(request.getParameter("R"));
-            String statusOfHit= areaProcessing.areaCheck(x,y,R);
-            PrintWriter out = response.getWriter();
-            out.println("<body>ПРивет мираэ</body>");
-        }catch (Exception e){
-            request.getRequestDispatcher("index.jsp").forward(request,response);
-        }
-    }
-
 }
 
