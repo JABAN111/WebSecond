@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded",function () {
             event.preventDefault();
         }
     });
+    let y;
 
     function isValidY(event) {
-        let y = event.target.value;
-        console.log("текущий y: " + y);
+        y = event.target.value;
         y = y.replace(",",".");
         if (y.trim() === "" || isNaN(y)) {
             yValid = false;
@@ -52,15 +52,16 @@ document.addEventListener("DOMContentLoaded",function () {
             return false;
         }
     }
-
+    let x;
     function isClickedX(event) {
         xValid = true;
+        x=event.target.value;
         checkEverythingIsValid();
         return true;
     }
-
+    let R;
     function isSelectedR(event) {
-        let R = event.target.value;
+        R = event.target.value;
         if (R !== undefined && R !== "") {
             RValid = true;
             checkEverythingIsValid();
@@ -81,11 +82,13 @@ document.addEventListener("DOMContentLoaded",function () {
                 url: "areaCheckServlet",
                 data: formData,
                 success: function (result) {
-                    printDotOnGraph(-2, 2, 4, true);
                     $("#result").append(result);
+                    let statusHit;
                     for (let i = 0; i < result.length; i++) {
-                        console.log(result[i])  ;
+                        statusHit = result[i] === "П";
                     }
+
+                    printDotOnGraph(x, y, R, statusHit);
                     // table = ""
                     // for (let i = 0; i < result.length; i++) {
                     //     table += result[i];
