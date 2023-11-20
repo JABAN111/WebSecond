@@ -14,27 +14,29 @@ import java.io.PrintWriter;
  * Все запросы внутри приложения должны передаваться этому сервлету (по методу GET или POST в зависимости от варианта задания),
  * остальные сервлеты с веб-страниц напрямую вызываться не должны.
  */
-@WebServlet("/ControllerServlet")
+@WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
+
             if (request.getParameter("R").isEmpty() || request.getParameter("x").isEmpty() || request.getParameter("y").isEmpty()) {
                 sendError(response,"some data is empty");
             }
             if (request.getParameter("R") == null || request.getParameter("x") == null || request.getParameter("y") == null) {
                 sendError(response,"data is invalid");
             }
-            int x = Integer.parseInt(request.getParameter("x"));
+            double x = Double.parseDouble(request.getParameter("x"));
             double y = Double.parseDouble(request.getParameter("y").replace(",", "."));
             int R = Integer.parseInt(request.getParameter("R"));
-            if(!(-5<x) || !(x<3)){
+
+            if(!(x>=-2.0) || !(x<=2.0)){
                 sendError(response,"x is out of range");
             }
-            if(!(-3 < y && y<5)){
+            if(!(y >= -5 && y <= 3)){
                 sendError(response,"y is out of range");
             }
-            if(!(1<R && R<5)){
+            if(!(R>=1 && R<=5)){
                 sendError(response,"R is out of range");
             }
             request.getRequestDispatcher("areaCheckServlet").forward(request,response);

@@ -14,7 +14,7 @@ public class areaProcessing {
             }
         }
         // first rotation
-        else if (x >= 0 && y >= 0) {
+        else if ((x >= 0) && (y >= 0)) {
             if(x <= R && y<=R){
                 return "Попадание";
             }

@@ -34,27 +34,27 @@
     <table id = "table-maine-entrance">
         <td>
             <table  id = "text-holder">
-                <form id = "coordinatesForm" action="/areaCheckServlet" method="POST">
+                <form id = "coordinatesForm" action="controller" method="POST">
                     <tr>
                         <td>
                             <div id="x-header">Выберите x:</div>
                             <br>
                             <div class="x-buttons" id="first-row">
-                                <% for (int i = -5; i < 0; i++) { %>
+                                <% for (double i = -2; i <= 0; i+=0.5) { %>
                                 <input autocomplete="off" class="x" type="radio" name="x" value="<%= i %>"> <%= i %>
-                                <% } %>
+                                <%} %>
                             </div>
                             <div class="x-buttons" id="second-row">
-                                <% for(int i=0; i < 4;i++){ %>
+                                <% for(double i=0; i <= 2;i+=0.5){ %>
                                 <input autocomplete="off" class="x" type="radio" name="x" value="<%=i%>"> <%=i%>
                                 <% } %>
                             </div>
                             <br>
                             <label for="yValue" id="y-header">Выберите y:</label><br>
 
-                            <input autocomplete='off' maxlength="5" id="yValue" type="text" name="y" placeholder="(от -3 до 5)" title="Введите число от -3 до 5"><br>
+                            <input autocomplete='off' maxlength="5" id="yValue" type="text" name="y" placeholder="(от -5 до 3)" title="Введите число от -5 до 3"><br>
 
-                            <label for = "Rinput" id="R-header">Выберите R:</label><br>
+                            <label id="R-header">Выберите R:</label><br>
                             <div id = "Rinput">
                                 <select class="R" name="R" autocomplete='off'>
                                     <option class = "R" value="">Выбрать</option>
@@ -65,6 +65,7 @@
                             </div><br>
                         </td>
                     </tr>
+
                 </form>
             </table>
         </td>
@@ -74,7 +75,7 @@
 <%--            <img id = "areaImage" src="pictures/areaSecondLab.png">--%>
         </td>
     </table><br>
-    <input id="submit-button" type="button" disabled="" name="button" value="отправить">
+    <input id="submit-button" type="submit" disabled="" name="button" value="отправить">
     <p id = "stat">Статистика</p>
     <table id="result">
         <tr><td>Координата x</td>
