@@ -12,10 +12,10 @@ public class rowResult {
     private double x;
     private double y;
     private int R;
-    private Date localTime;
+    private String localTime;
     private String isHit;
 
-    public rowResult(double x, double y, int R, Date localTime, String isHit) {
+    public rowResult(double x, double y, int R,  String isHit,String localTime) {
         this.x = x;
         this.y = y;
         this.R = R;

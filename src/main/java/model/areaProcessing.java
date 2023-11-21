@@ -6,7 +6,7 @@ package model;
  * Information must be valid
  */
 public class areaProcessing {
-    public static String areaCheck(Float x,Double y, Integer R) {
+    public static String areaCheck(Double x,Double y, Integer R) {
         //second rotation
         if(x <= 0 && y>=0){
             if(x>=-R && y <= R) {
