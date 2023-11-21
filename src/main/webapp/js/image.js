@@ -7,12 +7,12 @@ let w = canvas.width,
 const hatchWidth = 20 / 2;
 const hatchGap = 56;
 
-let currentRadius = null;
+let currentRadius = null || 1;// временно добавлено значение
 
 let sections = [
     {
-        "name": "first_quarter",
-        "draw": () => {
+        name: "first_quarter",
+        draw: () => {
             ctx.beginPath();
             ctx.fillStyle = "#0B04D5";
             ctx.moveTo(w / 2, h / 2 - hatchGap * 2);
@@ -24,8 +24,8 @@ let sections = [
         }
     },
     {
-        "name": "second_quarter",
-        "draw": () => {
+        name: "second_quarter",
+        draw: () => {
             ctx.beginPath();
             ctx.fillStyle = "#0B04D5";
             ctx.moveTo(w / 2, h / 2);
@@ -35,8 +35,8 @@ let sections = [
         }
     },
     {
-        "name": "fourth_quarter",
-        "draw": () => {
+        name: "fourth_quarter",
+        draw: () => {
             ctx.beginPath();
             ctx.fillStyle = "#0B04D5";
             ctx.moveTo(w/2+hatchGap,h/2);
@@ -142,28 +142,80 @@ function printDotOnGraph(xCenter, yCenter, isHit) {
     ctx.closePath();
 }
 
-let Rpicked = function(radius) {
-    // const canvas = document.getElementById('myCanvas');
-    // const ctx = ca   nvas.getContext('2d');
-
-    canvas.addEventListener('click', function(event) {
-        const rect = canvas.getBoundingClientRect();
-        console.log(rect.toJSON());
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        // ctx.beginPath();
-        // ctx.arc(200, 75, radius, 0, 2 * Math.PI);
-        // ctx.fill();
-        // ctx.closePath();
-
-        console.log(`X: ${x}, Y: ${y}, Radius: ${radius}\nIs Point In Path: ${ctx.isPointInPath(x, y)}`);
-
-        if (ctx.isPointInPath(x, y)) {
-            alert("You clicked inside the filled area");
-        }
-    });
-}
-
-
 redrawGraph();
+
+const mouse = {
+    x: 0,
+    y: 0
+    //возможно стоит назначить статусы над координатной плоскостью или нет
+}
+canvas.addEventListener("click",mouseHandler);
+function mouseHandler(event){
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = event.clientX - rect.left;
+    mouse.y = event.clientY - rect.top;
+
+    // ctx.beginPath();
+    // ctx.arc(w/2+hatchGap,h/2 - hatchGap,3,0,Math.PI*2);
+    // ctx.fillStyle = "red"
+    // ctx.fill();
+
+    clickingProcessing(mouse.x, mouse.y,event);
+    // animation.render();
+    // animation.clear();
+}
+const animation = {
+    clear(){
+
+    },
+    render(){
+        let x = (((clicked_x-w/2)/hatchGap)/2)*currentRadius;
+        let y = -(((clicked_y-h/2)/hatchGap)/2)*currentRadius;
+        console.log(x,y);
+        const rect = canvas.getBoundingClientRect();
+        ctx.fillStyle = '#ff0000';
+        ctx.beginPath();
+        ctx.arc(clicked_x, clicked_y, 1, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+    },
+    update(){
+
+    }
+}
+function clickingProcessing(clicked_x,clicked_y,event){
+    // ctx.fillStyle = isHit ? '#1AFF00' : '#ff0000'
+    // let x = w / 2 + clicked_x * hatchGap * (2 / currentRadius);
+    // let y = h / 2 - clicked_y * hatchGap * (2 / currentRadius);
+    let x = (((clicked_x-w/2)/hatchGap)/2)*currentRadius;
+    let y = -(((clicked_y-h/2)/hatchGap)/2)*currentRadius;
+    console.log(x,y);
+    const rect = canvas.getBoundingClientRect();
+    ctx.fillStyle = '#ff0000';
+    ctx.beginPath();
+    ctx.arc(clicked_x, clicked_y, 1, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.closePath();
+}
+// let Rpicked = function(radius) {
+//     // const canvas = document.getElementById('myCanvas');
+//     // const ctx = ca   nvas.getContext('2d');
+//
+//     canvas.addEventListener('click', function(event) {
+//         const rect = canvas.getBoundingClientRect();
+//         const x = event.clientX - rect.left;
+//         const y = event.clientY - rect.top;
+//
+//         // ctx.beginPath();
+//         // ctx.arc(200, 75, radius, 0, 2 * Math.PI);
+//         // ctx.fill();
+//         // ctx.closePath();
+//
+//         // console.log(`X: ${x}, Y: ${y}, Radius: ${radius}\nIs Point In Path: ${ctx.isPointInPath(x, y)}`);
+//
+//         if (ctx.isPointInPath(x, y)) {
+//
+//             alert("You clicked inside the filled area");
+//         }
+//     });
+// }
