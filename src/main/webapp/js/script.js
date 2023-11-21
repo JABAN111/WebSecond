@@ -115,7 +115,8 @@ document.addEventListener("DOMContentLoaded",function () {
                     url: "controller",
                     data: $.param(formData),
                     success: function (result) {
-                        $("#result").append(result);
+                        $("#result").html(result);
+                        // $("#result").append(result);
                         let statusHit;
                         for (let i = 0; i < result.length; i++) {
                             statusHit = result[i] === "П";

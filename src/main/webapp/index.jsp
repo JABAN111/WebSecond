@@ -40,12 +40,12 @@
                             <div id="x-header">Выберите x:</div>
                             <br>
                             <div class="x-buttons" id="first-row">
-                                <% for (double i = -2; i <= 0; i+=0.5) { %>
-                                <input autocomplete="off" class="x" type="radio" name="x" value="<%= i %>"> <%= i %>
+                                <% for (float i = -2; i <= 0; i+=0.5) { %>
+                                <input  autocomplete="off" class="x" type="radio" name="x" value="<%= i %>"> <%= i %>
                                 <%} %>
                             </div>
                             <div class="x-buttons" id="second-row">
-                                <% for(double i=0; i <= 2;i+=0.5){ %>
+                                <% for(float i = 0.5F; i <= 2;i+=0.5){ %>
                                 <input autocomplete="off" class="x" type="radio" name="x" value="<%=i%>"> <%=i%>
                                 <% } %>
                             </div>
@@ -77,13 +77,18 @@
     </table><br>
     <input id="submit-button" type="submit" disabled="" name="button" value="отправить">
     <p id = "stat">Статистика</p>
-    <table id="result">
+    <table id = "data">
+        <thead>
         <tr><td>Координата x</td>
             <td>Координата y</td>
             <td>Координата R</td>
             <td>Статус попадания</td>
             <td>Дата</td>
         </tr>
+        </thead>
+        <tbody id="result">
+
+        </tbody>
 
     </table>
 
@@ -103,7 +108,7 @@
 
 <script src="js/image.js">
 </script>
-
 <script src="js/script.js"></script>
+<%--<script src = "js/clickingProcessing.js"></script>--%>
 </body>
 </html>
