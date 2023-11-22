@@ -1,11 +1,18 @@
 package serverlets;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -16,6 +23,7 @@ import java.io.PrintWriter;
  */
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
@@ -45,7 +53,25 @@ public class ControllerServlet extends HttpServlet {
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Method is not allowed");
+        try{
+            int i = Integer.parseInt(request.getParameter("codePing"));
+            ServletContext context = getServletContext();
+            LinkedList<rowResult> rowResults ;
+            if(i == 0){// && ((rowResults = (LinkedList<rowResult>) context.getAttribute("checkResults")) != null)){
+                request.getRequestDispatcher("areaCheckServlet").forward(request,response);
+
+//                PrintWriter out = response.getWriter();
+//                for (rowResult row: rowResults) {
+//                    out.println(row.getAllByTableRow());
+//                }
+//                out.close();
+            }
+            else{
+                response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Method is not allowed,btw row len:" );
+            }
+        }catch (NumberFormatException | ServletException e){
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid code or no data in context");
+        }
     }
     private void sendError(HttpServletResponse response, String errorMessage) throws IOException {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, errorMessage);

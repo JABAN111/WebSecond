@@ -10,21 +10,21 @@ public class areaProcessing {
         //second rotation
         if(x <= 0 && y>=0){
             if(x>=-R && y <= R) {
-                return "Попадание";
+                return "Hit";
             }
         }
         // first rotation
         else if ((x >= 0) && (y >= 0)) {
-            if(x <= R && y<=R){
-                return "Попадание";
+            if(x <= R && y<=R && (-x+R) >= y){
+                return "Hit";
             }
         }
         //fourth rotation
-        else if (x >= 0 && y>= 0) {
-            if ((x * x + y * y) <= ((double) R / 2) * (double) R / 2) {
-                return "Попадание";
+        else if (x >= 0 && y<= 0) {
+            if ((x * x + y * y) <= ((float) R / 2) * (float) R / 2) {
+                return "Hit";
             }
         }
-        return "мимо";
+        return "Miss";
     }
 }

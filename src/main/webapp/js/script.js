@@ -100,39 +100,47 @@ document.addEventListener("DOMContentLoaded",function () {
             y: y,
         }
     }
-
-        $(document).ready(function () {
-            $("#submit-button").click(function () {
-                let localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                let formData = {
-                    x: x,
-                    y: y,
-                    R: R,
-                    localTime: localTime
-                }
-                $.ajax({
-                    type: "POST",
-                    url: "controller",
-                    data: $.param(formData),
-                    success: function (result) {
-                        $("#result").html(result);
-                        // $("#result").append(result);
-                        let statusHit;
-                        for (let i = 0; i < result.length; i++) {
-                            statusHit = result[i] === "П";
-                        }
-
-                        printDotOnGraph(x, y, R, statusHit);
-                        // table = ""
-                        // for (let i = 0; i < result.length; i++) {
-                        //     table += result[i];
-                        // }
-                        // localStorage.setItem("DataTable",table)
-                    },
-                    error: function (error) {
-                        console.error("Error while getting data from server");
+    $(document).ready(function (){
+        let pingInf = {codePing:0};
+        $.ajax(
+            {
+                type: "GET",
+                url: "controller",
+                data: $.param(pingInf),
+                success: function (result) {
+                    $("#result").html(result);
+                    let statusHit;
+                    for (let i = 0; i < result.length; i++) {
+                        statusHit = result[i] === "H";
                     }
-                })
-            });
+                    printDotOnGraph(x, y, R, statusHit);
+                },
+                error: function (error) {
+                    console.error("Error while getting data from server");
+                }
+            }
+        )
+    });
+    $(document).ready(function () {
+        $("#submit-button").click(function () {
+            let localTime = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            let formData = {
+                x: x,
+                y: y,
+                R: R,
+                localTime: localTime
+            }
+            $.ajax({
+                type: "POST",
+                url: "controller",
+                data: $.param(formData),
+                success: function (result) {
+                    $("#result").html(result);
+                },
+                error: function (error) {
+                    console.error("Error while getting data from server");
+                }
+            })
         });
     });
+});

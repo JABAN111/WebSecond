@@ -52,8 +52,14 @@ body{
 }
 
 
-.x-buttons input {
-    margin: 5px;
+/*.x-buttons input {*/
+/*    margin: 5px;*/
+/*}*/
+input[type=radio]  #first-row{
+    margin: 0 0 0 0;
+}
+input[type=radio]  #second-row{
+    margin: 0 20px 0 0;
 }
 
 #y-header{
@@ -107,8 +113,9 @@ body{
 /*    padding-right: 184px;*/
 /*}*/
 #myCanvas{
-    padding-top: 70px;
-    padding-right: 184px;
+    /*cursor: none;*/
+    margin-top: 70px;
+    margin-right: 184px;
 }
 
 .header-images{
@@ -143,9 +150,10 @@ body{
     text-align: center;
     font-family: "Segoe UI", serif;
 }
-#result{
+#data{
     border: 1px;
     font-size: 56px;
     width: 100%;
     padding: 20px;
 }
+

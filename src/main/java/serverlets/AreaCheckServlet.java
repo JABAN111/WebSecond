@@ -26,29 +26,25 @@ import java.util.TimeZone;
 
 @WebServlet("/areaCheckServlet")
 public class AreaCheckServlet extends HttpServlet {
-//    public void init(ServletConfig config) throws ServletException {
-//        super.init(config);
-//
-//        // Инициализация начальных значений и сохранение их в контексте приложения
-//        List<rowResult> checkResults = new LinkedList<>();
-//
-//        getServletContext().setAttribute("checkResults", checkResults);
-//    }
+    private List<rowResult> rowResults;
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+
+        ServletContext context = getServletContext();
+        this.rowResults = (LinkedList<rowResult>) context.getAttribute("checkResults");
+        if (this.rowResults == null) {
+            this.rowResults = new LinkedList<>();
+
+            context.setAttribute("rowResults", rowResults);
+        }
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws  IOException {
         response.setCharacterEncoding("UTF-8");
-        List<rowResult> rowResults = new LinkedList<>();
         PrintWriter out = response.getWriter();
 
         ServletContext context = getServletContext();
-//        String outpTableData = "";
-//        String[] data;
-//        if((data = (String[]) context.getAttribute("outputString")) != null){
-//            for(int i = 0; i < data.length; i++) {
-//                out.println(data[i]);
-//            }
-//        }
 
         String timeZone = request.getParameter("localTime");
         TimeZone userTimeZone = TimeZone.getTimeZone(timeZone);
@@ -61,19 +57,22 @@ public class AreaCheckServlet extends HttpServlet {
         double y = Double.parseDouble(request.getParameter("y"));
         int R = Integer.parseInt(request.getParameter("R"));
         rowResult rR = new rowResult(x,y,R,areaProcessing.areaCheck(x,y,R),formattedTime);
-        rowResults.add(rR);
+        this.rowResults.add(rR);
+
         context.setAttribute("rowResults",rowResults);
-//        String outputString = "<tr>\n" +
-//                "<td>" + request.getParameter("x") + "</td>\n" +
-//                "<td>" + request.getParameter("y") + "</td>\n" +
-//                "<td>" + request.getParameter("R") + "</td>\n" +
-//                "<td>" + areaProcessing.areaCheck(
-//                Double.parseDouble(request.getParameter("x")),
-//                Double.parseDouble(request.getParameter("y").replace(",", ".")),
-//                Integer.parseInt(request.getParameter("R"))) + "</td>\n" +
-//                "<td>" + formattedTime + "</td>\n" + "</tr>";
-            out.println(rR.getAllByTableRow());
-            out.close();
+        for (rowResult row: rowResults) {
+            out.println(row.getAllByTableRow());
+        }
+        out.close();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
+        for (rowResult row: rowResults) {
+            out.println(row.getAllByTableRow());
+        }
+        out.close();
     }
 }
 
