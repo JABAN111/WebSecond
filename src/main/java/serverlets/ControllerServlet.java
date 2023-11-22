@@ -37,12 +37,15 @@ public class ControllerServlet extends HttpServlet {
 
             if(!(x>=-2.0) || !(x<=2.0)){
                 sendError(response,"x is out of range");
+                return;
             }
             if(!(y >= -5 && y <= 3)){
                 sendError(response,"y is out of range");
+                return;
             }
             if(!(R>=1 && R<=5)){
                 sendError(response,"R is out of range");
+                return;
             }
             request.getRequestDispatcher("areaCheckServlet").forward(request,response);
         }catch (Exception e){
@@ -50,25 +53,7 @@ public class ControllerServlet extends HttpServlet {
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try{
-            int i = Integer.parseInt(request.getParameter("codePing"));
-            ServletContext context = getServletContext();
-            LinkedList<rowResult> rowResults ;
-            if(i == 0){// && ((rowResults = (LinkedList<rowResult>) context.getAttribute("checkResults")) != null)){
-                request.getRequestDispatcher("areaCheckServlet").forward(request,response);
-
-//                PrintWriter out = response.getWriter();
-//                for (rowResult row: rowResults) {
-//                    out.println(row.getAllByTableRow());
-//                }
-//                out.close();
-            }
-            else{
-                response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Method is not allowed,btw row len:" );
-            }
-        }catch (NumberFormatException | ServletException e){
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid code or no data in context");
-        }
+        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Method is not allowed,btw row len:" );
     }
     private void sendError(HttpServletResponse response, String errorMessage) throws IOException {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, errorMessage);
