@@ -138,16 +138,12 @@ document.addEventListener("DOMContentLoaded",function () {
                     $("#notification").hide();
                     let statusHit ;
                     for (let i = 0; i < result.length; i++) {
-                         if(result[i] == "H"){
-                             statusHit = true;
-                         }
-                         if(result[i] == "M")
-                             statusHit = false;
-                    }
+                         if(result[i] === "H")statusHit = true;
+                         if(result[i] === "M") statusHit = false;}
                     printDotOnGraph(x, y,statusHit);
                 },
                 error: function (error) {
-                    if(error.status == 400){
+                    if(error.status === 400){
                         $("#notification").html(error.responseText);
                         $("#notification").show();
                     }
