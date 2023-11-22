@@ -1,4 +1,4 @@
-package serverlets;
+package model;
 
 import model.areaProcessing;
 
