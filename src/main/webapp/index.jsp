@@ -75,7 +75,8 @@
 <%--            <img id = "areaImage" src="pictures/areaSecondLab.png">--%>
         </td>
     </table><br>
-    <input id="submit-button" type="submit" disabled="" name="button" value="отправить">
+    <input id="submit-button" type="submit" disabled="" name="button" value="отправить"><br>
+    <span id = "notification"></span>
     <p id = "stat">Статистика</p>
     <table id = "data">
         <thead>

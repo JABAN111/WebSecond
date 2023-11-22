@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded",function () {
          xValid = true;
          yValid = true;
          checkEverythingIsValid();
-        console.log(x, y);
         return {
             x: x,
             y: y,
@@ -113,7 +112,7 @@ document.addEventListener("DOMContentLoaded",function () {
                     for (let i = 0; i < result.length; i++) {
                         statusHit = result[i] === "H";
                     }
-                    printDotOnGraph(x, y, R, statusHit);
+                    // printDotOnGraph(x, y, R, statusHit);
                 },
                 error: function (error) {
                     console.error("Error while getting data from server");
@@ -136,9 +135,22 @@ document.addEventListener("DOMContentLoaded",function () {
                 data: $.param(formData),
                 success: function (result) {
                     $("#result").html(result);
+                    $("#notification").hide();
+                    let statusHit ;
+                    for (let i = 0; i < result.length; i++) {
+                         if(result[i] == "H"){
+                             statusHit = true;
+                         }
+                         if(result[i] == "M")
+                             statusHit = false;
+                    }
+                    printDotOnGraph(x, y,statusHit);
                 },
                 error: function (error) {
-                    console.error("Error while getting data from server");
+                    if(error.status == 400){
+                        $("#notification").html(error.responseText);
+                        $("#notification").show();
+                    }
                 }
             })
         });
