@@ -94,22 +94,10 @@
     </table>
 
 </div>
-<%--<br>--%>
-<%--<h1>PLS WORK </h1>--%>
-<%--<form action="ControllerServlet" method="POST">--%>
-<%--    <label for="x">x:</label>--%>
-<%--    <input type="text" id="x" name="x" required><br>--%>
-<%--    <label for="y">y:</label>--%>
-<%--    <input type="text" id="y" name="y" required><br>--%>
-<%--    <label for="R">R:</label>--%>
-<%--    <input type="text" id="R" name="R" required><br>--%>
-<%--    <input type="submit" value="Send">--%>
-<%--</form>--%>
-<%--<script src="js/image.js"></script>--%>
+
 
 <script src="js/image.js">
 </script>
 <script src="js/script.js"></script>
-<%--<script src = "js/clickingProcessing.js"></script>--%>
 </body>
 </html>
