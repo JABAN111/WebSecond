@@ -19,7 +19,7 @@
   <!-- Определение сервлета AreaCheckServlet -->
   <servlet>
     <servlet-name>AreaCheckServlet</servlet-name>
-    <servlet-class>serverlets.AreaCheckServlet</servlet-class>
+    <servlet-class>model.AreaCheckServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AreaCheckServlet</servlet-name>
